@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -ex
 : ${DOCKER_USER:? required}
 
 export GO111MODULE=on 
