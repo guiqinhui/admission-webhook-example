@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 usage() {
     cat <<EOF
@@ -108,6 +108,8 @@ done
 
 # approve and fetch the signed certificate
 kubectl certificate approve ${csrName}
+# kubectl certificate approve --certificate-approve-api-version=certificates.k8s.io/v1 ${csrName}##
+
 # verify certificate has been signed
 for x in $(seq 10); do
     serverCert=$(kubectl get csr ${csrName} -o jsonpath='{.status.certificate}')
